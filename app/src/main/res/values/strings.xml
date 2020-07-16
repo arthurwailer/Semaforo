@@ -1,0 +1,19 @@
+<resources>
+    // activity home
+    <string name="app_name">Semaforo</string>
+    <string name="botonAgregar">Add</string>
+
+    // activity formulario
+    <string name="botonAtras">Atras</string>
+    <string name="txtDatosContacto">Datos del contacto</string>
+    <string name="txtNombre">Nombre</string>
+    <string name="txtTelefono">Teléfono</string>
+    <string name="smsColorVerde">Sms verde</string>
+    <string name="smsColorRojo">Sms rojo</string>
+    <string name="smsColorNaranjo">Sms naranjo</string>
+    <string name="botonGuardar">Guardar</string>
+
+
+
+
+</resources>

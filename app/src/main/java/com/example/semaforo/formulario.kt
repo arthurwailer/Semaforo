@@ -1,0 +1,35 @@
+package com.example.semaforo
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_formulario.*
+
+class formulario : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_formulario)
+        botonAtrasHome.setOnClickListener{
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
+        botonGuardar.setOnClickListener{
+            val sqLiteHelper = SQLiteHelper(this)
+
+            val nombre = personName.text.toString() // INPUT DATA
+            val telefono = personPhone.text.toString()
+            val smsR = textSmsRojo.text.toString()
+            val smsN = textSmsNaranjo.text.toString()
+            val smsV = textSmsVerde.text.toString()
+
+            val modeloContacto = ModeloContacto(nombre,telefono.toInt(),smsR,smsN,smsV)
+
+            sqLiteHelper.insertData(modeloContacto) // TERMINAR DE INSERTAR DATA
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+
+        }
+
+
+    }
+}
