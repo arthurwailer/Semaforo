@@ -2,6 +2,7 @@ package com.example.semaforo
 
 class ModeloContacto {
 
+
     var mId:Int? = null // en la funcion no se toma en cuenta por que es un autoincrement
 
     var mName:String? = null

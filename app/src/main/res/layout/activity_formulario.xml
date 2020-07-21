@@ -77,10 +77,9 @@
     </LinearLayout>
 
 
-
     <LinearLayout
-        android:layout_width="340dp"
-        android:layout_height="82dp"
+        android:layout_width="297dp"
+        android:layout_height="56dp"
         android:alwaysDrawnWithCache="false"
         android:animateLayoutChanges="false"
         android:animationCache="false"
@@ -93,7 +92,7 @@
 
         <Button
             android:id="@+id/botonAtrasHome"
-            android:layout_width="172dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/botonAtras"
             android:textSize="30sp" />
