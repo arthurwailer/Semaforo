@@ -5,9 +5,9 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
-import java.net.IDN
 
 class SQLiteHelper: SQLiteOpenHelper {
+
 
     companion object{
         const val DATABASE_NAME = "contactos.db"
@@ -18,20 +18,27 @@ class SQLiteHelper: SQLiteOpenHelper {
         private const val ID = "_id"
         private const val NAME:String = "Name"
         private const val PHONE = "Telephone"
-        private const val SMS_ROJO:String = "sms_rojo"
-        private const val SMS_NARANJO:String = "sms_naranjo"
-        private const val SMS_VERDE:String = "sms_verde"
+        private const val SMS_ROJO_ON:String = "sms_rojo_on"
+        private const val SMS_ROJO_OFF:String = "sms_rojo_off"
+        private const val SMS_NARANJO_ON:String = "sms_naranjo_on"
+        private const val SMS_NARANJO_OFF:String = "sms_naranjo_off"
+        private const val SMS_VERDE_ON:String = "sms_verde_on"
+        private const val SMS_VERDE_OFF:String = "sms_verde_off"
 
         // conts para crear la tabla en OnCreate
         const val CREATE_TABLE:String = "CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" "+ " (" +
                 ID + " INTEGER PRIMARY KEY, "+
                 NAME + " TEXT NOT NULL, "+
                 PHONE + " INTEGER NOT NULL, "+
-                SMS_ROJO + " TEXT NOT NULL, "+
-                SMS_NARANJO +" TEXT NOT NULL, "+
-                SMS_VERDE + " TEXT NOT NULL);"
+                SMS_ROJO_ON + " TEXT NOT NULL, "+
+                SMS_ROJO_OFF + " TEXT NOT NULL, "+
+                SMS_NARANJO_ON +" TEXT NOT NULL, "+
+                SMS_NARANJO_OFF +" TEXT NOT NULL, "+
+                SMS_VERDE_ON + " TEXT NOT NULL, "+
+                SMS_VERDE_OFF + " TEXT NOT NULL);"
 
     }
+
 
     var context:Context
 
@@ -55,12 +62,34 @@ class SQLiteHelper: SQLiteOpenHelper {
 
         values.put(NAME, modeloContacto.mName)
         values.put(PHONE, modeloContacto.mPhone)
-        values.put(SMS_ROJO, modeloContacto.mSmsRojo)
-        values.put(SMS_NARANJO, modeloContacto.mSmsNaranjo)
-        values.put(SMS_VERDE, modeloContacto.mSmsVerde)
+        values.put(SMS_ROJO_ON, modeloContacto.mSmsRojoOn)
+        values.put(SMS_ROJO_OFF, modeloContacto.mSmsRojoOff)
+        values.put(SMS_NARANJO_ON, modeloContacto.mSmsNaranjoOn)
+        values.put(SMS_NARANJO_OFF, modeloContacto.mSmsNaranjoOff)
+        values.put(SMS_VERDE_ON, modeloContacto.mSmsVerdeOn)
+        values.put(SMS_VERDE_OFF, modeloContacto.mSmsVerdeOff)
 
         db.insert(TABLE_NAME,null, values)
         Toast.makeText(context,"Contacto guardado",Toast.LENGTH_SHORT).show()// MENSAJE DE CONFIRMACION
         db.close()
     }
+
+
+    val allPerson:List<ModeloDatoRecycler>
+        get() {
+            var lstContacto = ArrayList<ModeloDatoRecycler>()
+            var selectQuery = "SELECT * FROM $TABLE_NAME"
+            val db: SQLiteDatabase? = this.writableDatabase
+            val cursor = db?.rawQuery(selectQuery,null)
+            if(cursor!!.moveToFirst()){
+                do{
+                    val contacto = ModeloDatoRecycler(null)
+                    contacto.nombre = cursor.getString(cursor.getColumnIndex(NAME))
+                    lstContacto.add(contacto)
+                }while(cursor.moveToNext())
+            }
+            return lstContacto
+        }
+
+
 }

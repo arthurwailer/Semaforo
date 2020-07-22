@@ -8,9 +8,12 @@
     <string name="txtDatosContacto">Datos del contacto</string>
     <string name="txtNombre">Nombre</string>
     <string name="txtTelefono">Teléfono</string>
-    <string name="smsColorVerde">Sms verde</string>
-    <string name="smsColorRojo">Sms rojo</string>
-    <string name="smsColorNaranjo">Sms naranjo</string>
+    <string name="smsColorVerdeOn">Sms verde on</string>
+    <string name="smsColorVerdeOff">Sms verde off</string>
+    <string name="smsColorRojoOn">Sms rojo on</string>
+    <string name="smsColorRojoOff">Sms rojo off</string>
+    <string name="smsColorNaranjoOn">Sms naranjo on</string>
+    <string name="smsColorNaranjoOff">Sms naranjo off</string>
     <string name="botonGuardar">Guardar</string>
 
 

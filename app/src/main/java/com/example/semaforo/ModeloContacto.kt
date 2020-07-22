@@ -7,21 +7,30 @@ class ModeloContacto {
 
     var mName:String? = null
     var mPhone:Int? = null
-    var mSmsRojo:String? = null
-    var mSmsNaranjo:String? = null
-    var mSmsVerde:String? = null
+    var mSmsRojoOn:String? = null
+    var mSmsRojoOff:String? = null
+    var mSmsNaranjoOn:String? = null
+    var mSmsNaranjoOff:String? = null
+    var mSmsVerdeOn:String? = null
+    var mSmsVerdeOff:String? = null
 
     constructor(
         mName: String?,
         mPhone: Int?,
-        mSmsRojo: String?,
-        mSmsNaranjo: String?,
-        mSmsVerde: String?
+        mSmsRojoOn: String?,
+        mSmsRojoOff: String?,
+        mSmsNaranjoOn: String?,
+        mSmsNaranjoOff: String?,
+        mSmsVerdeOn: String?,
+        mSmsVerdeOff: String?
     ) {
         this.mName = mName
         this.mPhone = mPhone
-        this.mSmsRojo = mSmsRojo
-        this.mSmsNaranjo = mSmsNaranjo
-        this.mSmsVerde = mSmsVerde
+        this.mSmsRojoOn = mSmsRojoOn
+        this.mSmsRojoOff = mSmsRojoOff
+        this.mSmsNaranjoOn = mSmsNaranjoOn
+        this.mSmsNaranjoOff = mSmsNaranjoOff
+        this.mSmsVerdeOn = mSmsVerdeOn
+        this.mSmsVerdeOff = mSmsVerdeOff
     }
 }

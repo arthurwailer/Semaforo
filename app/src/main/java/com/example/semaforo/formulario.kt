@@ -18,11 +18,14 @@ class formulario : AppCompatActivity() {
 
             val nombre = personName.text.toString() // INPUT DATA
             val telefono = personPhone.text.toString()
-            val smsR = textSmsRojo.text.toString()
-            val smsN = textSmsNaranjo.text.toString()
-            val smsV = textSmsVerde.text.toString()
+            val rojoOn = textSmsRojoOn.text.toString()
+            val rojoOff = textSmsRojoOff.text.toString()
+            val naranjoOn = textSmsNaranjoOn.text.toString()
+            val naranjoOff = textSmsNaranjoOff.text.toString()
+            val verdeOn = textSmsVerdeOn.text.toString()
+            val verdeOff = textSmsVerdeOff.text.toString()
 
-            val modeloContacto = ModeloContacto(nombre,telefono.toInt(),smsR,smsN,smsV)
+            val modeloContacto = ModeloContacto(nombre,telefono.toInt(),rojoOn,rojoOff,naranjoOn,naranjoOff,verdeOn,verdeOff)
 
             sqLiteHelper.insertData(modeloContacto) // TERMINAR DE INSERTAR DATA
             val intent = Intent(this,MainActivity::class.java)

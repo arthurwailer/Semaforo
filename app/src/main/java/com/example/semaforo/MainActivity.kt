@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    var contactos: ArrayList<ModeloDatoRecycler>? = null
-
-
+    internal lateinit var  db:SQLiteHelper
+    var contactos: ArrayList<ModeloDatoRecycler>? = ArrayList<ModeloDatoRecycler>()
     var layoutManager: RecyclerView.LayoutManager? = null
     var adaptadorCustom: AdaptadorCustom? = null
     var lista:RecyclerView? = null
@@ -21,24 +20,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        contactos = ArrayList()
-        contactos?.add(ModeloDatoRecycler("alonso"))
-        contactos?.add(ModeloDatoRecycler("pericles"))
-        contactos?.add(ModeloDatoRecycler("sim"))
-        contactos?.add(ModeloDatoRecycler("Josefa"))
-        contactos?.add(ModeloDatoRecycler("Josefa6"))
-        contactos?.add(ModeloDatoRecycler("alonso"))
-        contactos?.add(ModeloDatoRecycler("pericles"))
-        contactos?.add(ModeloDatoRecycler("sim"))
-        contactos?.add(ModeloDatoRecycler("Josefa"))
-        contactos?.add(ModeloDatoRecycler("Josefa6"))
-
-        Log.i("", contactos!![0].toString())
+        db = SQLiteHelper(this)
+        db.allPerson
 
         lista = findViewById(R.id.layoutRecycler)
 
         layoutManager = LinearLayoutManager(this)
-        adaptadorCustom = AdaptadorCustom(contactos!!)
+        adaptadorCustom = AdaptadorCustom(db.allPerson as ArrayList<ModeloDatoRecycler>)
         lista?.layoutManager = layoutManager
         lista?.adapter = adaptadorCustom
 

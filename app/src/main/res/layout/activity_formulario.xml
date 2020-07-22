@@ -34,7 +34,7 @@
         <EditText
             android:id="@+id/personName"
             android:layout_width="match_parent"
-            android:layout_height="89dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/txtNombre"
             android:inputType="textPersonName"
@@ -44,33 +44,57 @@
         <EditText
             android:id="@+id/personPhone"
             android:layout_width="match_parent"
-            android:layout_height="83dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/txtTelefono"
             android:inputType="phone" />
 
         <EditText
-            android:id="@+id/textSmsRojo"
+            android:id="@+id/textSmsVerdeOn"
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/smsColorRojo"
+            android:hint="@string/smsColorVerdeOn"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/textSmsNaranjo"
+            android:id="@+id/textSmsVerdeOff"
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/smsColorNaranjo"
+            android:hint="@string/smsColorVerdeOff"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/textSmsVerde"
+            android:id="@+id/textSmsNaranjoOn"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/smsColorVerde"
+            android:hint="@string/smsColorNaranjoOn"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/textSmsNaranjoOff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/smsColorNaranjoOff"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/textSmsRojoOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/smsColorRojoOn"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/textSmsRojoOff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/smsColorRojoOff"
             android:inputType="textPersonName" />
 
 
