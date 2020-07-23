@@ -24,9 +24,12 @@ class SQLiteHelper: SQLiteOpenHelper {
         private const val SMS_NARANJO_OFF:String = "sms_naranjo_off"
         private const val SMS_VERDE_ON:String = "sms_verde_on"
         private const val SMS_VERDE_OFF:String = "sms_verde_off"
+        private const val STATUS_ROJO = "status_rojo"
+        private const val STATUS_NARANJO = "status_naranjo"
+        private const val STATUS_VERDE = "status_verde"
 
         // conts para crear la tabla en OnCreate
-        const val CREATE_TABLE:String = "CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" "+ " (" +
+        const val CREATE_TABLE:String = "CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" " + " (" +
                 ID + " INTEGER PRIMARY KEY, "+
                 NAME + " TEXT NOT NULL, "+
                 PHONE + " INTEGER NOT NULL, "+
@@ -35,7 +38,11 @@ class SQLiteHelper: SQLiteOpenHelper {
                 SMS_NARANJO_ON +" TEXT NOT NULL, "+
                 SMS_NARANJO_OFF +" TEXT NOT NULL, "+
                 SMS_VERDE_ON + " TEXT NOT NULL, "+
-                SMS_VERDE_OFF + " TEXT NOT NULL);"
+                SMS_VERDE_OFF + " TEXT NOT NULL, "+
+                STATUS_ROJO + " BOOLEAN NOT NULL, "+
+                STATUS_NARANJO + " BOOLEAN NOT NULL, "+
+                STATUS_VERDE + " BOOLEAN NOT NULL );"
+
 
     }
 
@@ -68,6 +75,9 @@ class SQLiteHelper: SQLiteOpenHelper {
         values.put(SMS_NARANJO_OFF, modeloContacto.mSmsNaranjoOff)
         values.put(SMS_VERDE_ON, modeloContacto.mSmsVerdeOn)
         values.put(SMS_VERDE_OFF, modeloContacto.mSmsVerdeOff)
+        values.put(STATUS_ROJO,false)
+        values.put(STATUS_NARANJO, false)
+        values.put(STATUS_VERDE, false)
 
         db.insert(TABLE_NAME,null, values)
         Toast.makeText(context,"Contacto guardado",Toast.LENGTH_SHORT).show()// MENSAJE DE CONFIRMACION
@@ -88,6 +98,7 @@ class SQLiteHelper: SQLiteOpenHelper {
                     lstContacto.add(contacto)
                 }while(cursor.moveToNext())
             }
+            db.close()
             return lstContacto
         }
 

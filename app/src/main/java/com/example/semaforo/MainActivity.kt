@@ -19,19 +19,14 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        db = SQLiteHelper(this)
-        db.allPerson
+        db = SQLiteHelper(this) // creo un obejto de tipo SQLiteHelper
+        db.allPerson // este metodo retorna los nombres de la columna Nanme de la BBDD
 
         lista = findViewById(R.id.layoutRecycler)
-
         layoutManager = LinearLayoutManager(this)
-        adaptadorCustom = AdaptadorCustom(db.allPerson as ArrayList<ModeloDatoRecycler>)
+        adaptadorCustom = AdaptadorCustom(db.allPerson as ArrayList<ModeloDatoRecycler>) // entrego la lista al adaptador custom
         lista?.layoutManager = layoutManager
         lista?.adapter = adaptadorCustom
-
-
-
 
         botonAgregar.setOnClickListener {
             val intent = Intent(this, formulario::class.java)
