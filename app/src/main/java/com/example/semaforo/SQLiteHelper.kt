@@ -6,7 +6,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 
-class SQLiteHelper: SQLiteOpenHelper {
+class SQLiteHelper(var context: Context) :
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
 
     companion object{
@@ -47,12 +48,6 @@ class SQLiteHelper: SQLiteOpenHelper {
     }
 
 
-    var context:Context
-
-    constructor(context: Context):super(context, DATABASE_NAME, null, DATABASE_VERSION){
-    this.context = context
-    }
-
     override fun onCreate(database: SQLiteDatabase?) {
         database!!.execSQL(CREATE_TABLE)
 
@@ -84,23 +79,78 @@ class SQLiteHelper: SQLiteOpenHelper {
         db.close()
     }
 
+    fun getSingleResult(id: Int): ModeloContacto {
+        var modeloContacto  = ModeloContacto()
+        val db = this.readableDatabase
+        val selectQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + ID + " = '" + id + "'"
+        val cursor = db.rawQuery(selectQuery, null)
+        try {
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                if (cursor.getCount() > 0) {
+                    do {
+                        modeloContacto.mId = cursor.getInt(cursor.getColumnIndex(ID))
+                        modeloContacto.mName = cursor.getString(cursor.getColumnIndex(NAME))
+                        modeloContacto.mPhone = cursor.getInt(cursor.getColumnIndex(PHONE))
+                        modeloContacto.mSmsRojoOn = cursor.getString(cursor.getColumnIndex(SMS_ROJO_ON))
+                        modeloContacto.mSmsRojoOff = cursor.getString(cursor.getColumnIndex(
+                            SMS_ROJO_OFF))
+                        modeloContacto.mSmsNaranjoOn = cursor.getString(cursor.getColumnIndex(
+                            SMS_NARANJO_ON))
+                        modeloContacto.mSmsNaranjoOff = cursor.getString(cursor.getColumnIndex(
+                            SMS_NARANJO_OFF))
+                        modeloContacto.mSmsVerdeOn = cursor.getString(cursor.getColumnIndex(
+                            SMS_VERDE_ON))
+                        modeloContacto.mSmsVerdeOff = cursor.getString(cursor.getColumnIndex(
+                            SMS_VERDE_OFF))
+                        modeloContacto.mStatusRojo = cursor.getInt(cursor.getColumnIndex(
+                            STATUS_ROJO)) == 1
+                        modeloContacto.mStatusNaranjo = cursor.getInt(cursor.getColumnIndex(
+                            STATUS_NARANJO)) == 1
+                        modeloContacto.mStatusVerde = cursor.getInt(cursor.getColumnIndex(
+                            STATUS_VERDE)) == 1
+
+                    } while ((cursor.moveToNext()));
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+        db.close()
+        return modeloContacto
+    }
+
+    fun getAllResult(): ArrayList<ModeloContacto>  {
+        val db = this.writableDatabase
+        val res = db.rawQuery("select * from " + TABLE_NAME, null)
+        val useList = ArrayList<ModeloContacto>()
+        while (res.moveToNext()) {
+            var modeloContacto = ModeloContacto()
+            modeloContacto.mId = Integer.valueOf(res.getString(0))
+            modeloContacto.mName = res.getString(1)
+            useList.add(modeloContacto)
+        }
+        db.close()
+        return useList
+    }
 
     val allPerson:List<ModeloDatoRecycler>
         get() {
-            var lstContacto = ArrayList<ModeloDatoRecycler>()
-            var selectQuery = "SELECT * FROM $TABLE_NAME"
+            val lstContacto = ArrayList<ModeloDatoRecycler>()
+            val selectQuery = "SELECT * FROM $TABLE_NAME"
             val db: SQLiteDatabase? = this.writableDatabase
             val cursor = db?.rawQuery(selectQuery,null)
             if(cursor!!.moveToFirst()){
                 do{
-                    val contacto = ModeloDatoRecycler(null)
+                    val contacto = ModeloDatoRecycler(null, null)
+                    contacto.id = cursor.getInt(cursor.getColumnIndex(ID))
                     contacto.nombre = cursor.getString(cursor.getColumnIndex(NAME))
                     lstContacto.add(contacto)
                 }while(cursor.moveToNext())
             }
+            cursor.close()
             db.close()
             return lstContacto
         }
-
 
 }

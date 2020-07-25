@@ -25,7 +25,7 @@ class formulario : AppCompatActivity() {
             val verdeOn = textSmsVerdeOn.text.toString()
             val verdeOff = textSmsVerdeOff.text.toString()
 
-            val modeloContacto = ModeloContacto(nombre,telefono.toInt(),rojoOn,rojoOff,naranjoOn,naranjoOff,verdeOn,verdeOff)
+            val modeloContacto = ModeloContacto(nombre,telefono.toInt(),rojoOn,rojoOff,naranjoOn,naranjoOff,verdeOn,verdeOff,false,false,false)
 
             sqLiteHelper.insertData(modeloContacto) // TERMINAR DE INSERTAR DATA
             val intent = Intent(this,MainActivity::class.java)

@@ -16,7 +16,9 @@
     <string name="smsColorNaranjoOff">Sms naranjo off</string>
     <string name="botonGuardar">Guardar</string>
 
-
-
+    // fragment semaforo
+    <string name="lightRed">Luz Rojo</string>
+    <string name="lightOrange">Luz Naranjo</string>
+    <string name="lightGreen">Luz Verde</string>
 
 </resources>

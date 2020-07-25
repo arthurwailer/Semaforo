@@ -3,4 +3,12 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="lightOnRed">#C51010</color>
+    <color name="lightOffRed">#2E0000</color>
+    <color name="lightOnOrange">#FF9900</color>
+    <color name="lightOffOrange">#684200</color>
+    <color name="lightOnGreen">#16DD07</color>
+    <color name="lightOffGreen">#054201</color>
+
 </resources>
