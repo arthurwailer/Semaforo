@@ -20,5 +20,8 @@
     <string name="lightRed">Luz Rojo</string>
     <string name="lightOrange">Luz Naranjo</string>
     <string name="lightGreen">Luz Verde</string>
+    <string name="prevVal">Anterior</string>
+    <string name="nextVal">Siguiente</string>
+    <string name="nextContact">Siguiente Contacto</string>
 
 </resources>

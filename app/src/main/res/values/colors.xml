@@ -11,4 +11,7 @@
     <color name="lightOnGreen">#16DD07</color>
     <color name="lightOffGreen">#054201</color>
 
+    <color name="simpleBlack">#000000</color>
+    <color name="simpleWhite">#FFFFFF</color>
+
 </resources>
