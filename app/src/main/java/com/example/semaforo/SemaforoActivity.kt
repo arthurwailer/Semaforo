@@ -1,6 +1,7 @@
 package com.example.semaforo
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -30,5 +31,29 @@ class SemaforoActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+
+        lightRed.setOnClickListener {
+            contacto?.mSmsRojoOff?.let { it1 ->
+                Snackbar.make(view, it1, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show()
+            }
+        }
+
+        lightOrange.setOnClickListener {
+            contacto?.mSmsNaranjoOff?.let { it1 ->
+                Snackbar.make(view, it1, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show()
+            }
+        }
+
+        lightGreen.setOnClickListener {
+            contacto?.mSmsVerdeOff?.let { it1 ->
+                Snackbar.make(view, it1, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show()
+            }
+        }
+    }
 
 }
