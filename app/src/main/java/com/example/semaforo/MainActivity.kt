@@ -29,9 +29,9 @@ class MainActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this)
         adaptadorCustom = AdaptadorCustom(db.allPerson as ArrayList<ModeloDatoRecycler>,object:ClickListener{
             override fun onClickSemaforo(vista: View, posicion: Int) {
-
-                Snackbar.make(vista, "Mostrar este semaforo - id:" + contactos?.get(posicion)?.id, Snackbar.LENGTH_SHORT)
+                Snackbar.make(vista, "Semaforo de " + contactos?.get(posicion)?.id, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
+                contactos?.get(posicion)?.id?.let { goToSemaforo(it) };
             }
             override fun onClickEdit(vista: View, posicion: Int) {
                 Snackbar.make(vista, "Editar a " + contactos?.get(posicion)?.nombre, Snackbar.LENGTH_SHORT)
@@ -51,5 +51,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    private fun goToSemaforo(idContacto: Int) {
+        val intent = Intent(this, SemaforoActivity::class.java)
+        intent.putExtra("ID_CONTACTO",idContacto)
+        startActivity(intent)
     }
 }

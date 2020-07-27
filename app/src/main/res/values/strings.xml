@@ -23,5 +23,6 @@
     <string name="prevVal">Anterior</string>
     <string name="nextVal">Siguiente</string>
     <string name="nextContact">Siguiente Contacto</string>
+    <string name="nameContact">-sample-</string>
 
 </resources>
