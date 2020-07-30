@@ -80,13 +80,13 @@ class SQLiteHelper(var context: Context) :
     }
 
     fun getSingleResult(id: Int): ModeloContacto {
-        var modeloContacto  = ModeloContacto()
+        val modeloContacto  = ModeloContacto()
         val db = this.readableDatabase
         val selectQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + ID + " = '" + id + "'"
         val cursor = db.rawQuery(selectQuery, null)
         try {
             if (cursor.getCount() != 0) {
-                cursor.moveToFirst();
+                cursor.moveToFirst()
                 if (cursor.getCount() > 0) {
                     do {
                         modeloContacto.mId = cursor.getInt(cursor.getColumnIndex(ID))
@@ -110,11 +110,11 @@ class SQLiteHelper(var context: Context) :
                         modeloContacto.mStatusVerde = cursor.getInt(cursor.getColumnIndex(
                             STATUS_VERDE)) == 1
 
-                    } while ((cursor.moveToNext()));
+                    } while ((cursor.moveToNext()))
                 }
             }
         } finally {
-            cursor.close();
+            cursor.close()
         }
         db.close()
         return modeloContacto
@@ -125,7 +125,7 @@ class SQLiteHelper(var context: Context) :
         val res = db.rawQuery("select * from " + TABLE_NAME, null)
         val useList = ArrayList<ModeloContacto>()
         while (res.moveToNext()) {
-            var modeloContacto = ModeloContacto()
+            val modeloContacto = ModeloContacto()
             modeloContacto.mId = Integer.valueOf(res.getString(0))
             modeloContacto.mName = res.getString(1)
             useList.add(modeloContacto)
@@ -153,4 +153,16 @@ class SQLiteHelper(var context: Context) :
             return lstContacto
         }
 
+    fun updateStatusColor(idPerson:Int, colorStatus:String, valStatus:Boolean) {
+        val db: SQLiteDatabase? = this.writableDatabase
+        val values = ContentValues()
+        when (colorStatus){
+            "red" -> values.put(STATUS_ROJO, valStatus)
+            "orange" -> values.put(STATUS_NARANJO, valStatus)
+            "green" -> values.put(STATUS_VERDE, valStatus)
+            else -> return
+        }
+        db?.update(TABLE_NAME, values, "$ID=?", arrayOf(idPerson.toString()))
+        db?.close()
+    }
 }
