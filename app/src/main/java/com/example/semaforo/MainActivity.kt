@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.make(vista, "Borrar a " + contactos?.get(posicion)?.id.toString(), Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
                db.deletePerson(contactos?.get(posicion)?.id!!.toString())
+                var intent = Intent(this@MainActivity,MainActivity::class.java)
+                startActivity(intent)
 
 
             }

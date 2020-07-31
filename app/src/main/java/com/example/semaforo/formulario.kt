@@ -21,12 +21,12 @@ class formulario : AppCompatActivity() {
         extIdVal = intent?.getIntExtra("ID_CONTACTO", -1) ?: -1
 
         Log.i("EXTERNAL VAL :-", extIdVal.toString())
-        if (extIdVal!! > 0) {
+        if (extIdVal!! > 0) { // si el id del contacto existe
             db = SQLiteHelper(this) // creo un obejto de tipo SQLiteHelper
             contacto = db.getSingleResult(extIdVal!!)
-            setValues(contacto!!);
+            setValues(contacto!!) // setea
             Toast.makeText(applicationContext,"Editando a "+contacto!!.mName!!,Toast.LENGTH_SHORT).show()// MENSAJE DE CONFIRMACION
-        } else {
+        } else { // si no existe
             Toast.makeText(applicationContext,"Nuevo Contacto",Toast.LENGTH_SHORT).show()
         }
 
@@ -48,7 +48,12 @@ class formulario : AppCompatActivity() {
 
             val modeloContacto = ModeloContacto(nombre,telefono.toInt(),rojoOn,rojoOff,naranjoOn,naranjoOff,verdeOn,verdeOff,false,false,false)
 
-            sqLiteHelper.insertData(modeloContacto) // TERMINAR DE INSERTAR DATA
+            if (extIdVal!! > 0) {
+                modeloContacto.mId = contacto!!.mId!!
+                sqLiteHelper.updatePerson(modeloContacto)
+            } else {
+                sqLiteHelper.insertData(modeloContacto) // TERMINAR DE INSERTAR DATA
+            }
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
 
@@ -58,5 +63,12 @@ class formulario : AppCompatActivity() {
     private fun setValues(contacto: ModeloContacto) {
         personName.setText(contacto.mName)
         personPhone.setText(contacto.mPhone.toString())
+        textSmsRojoOn.setText(contacto.mSmsRojoOn.toString())
+        textSmsRojoOff.setText(contacto.mSmsRojoOff.toString())
+        textSmsNaranjoOn.setText(contacto.mSmsNaranjoOn.toString())
+        textSmsNaranjoOff.setText(contacto.mSmsNaranjoOff.toString())
+        textSmsVerdeOn.setText(contacto.mSmsVerdeOn.toString())
+        textSmsVerdeOff.setText(contacto.mSmsVerdeOff.toString())
+
     }
 }

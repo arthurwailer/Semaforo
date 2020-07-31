@@ -34,13 +34,13 @@ class SQLiteHelper(var context: Context) :
                 ID + " INTEGER PRIMARY KEY, "+
                 NAME + " TEXT NOT NULL, "+
                 PHONE + " INTEGER NOT NULL, "+
-                SMS_ROJO_ON + " TEXT NOT NULL, "+
-                SMS_ROJO_OFF + " TEXT NOT NULL, "+
-                SMS_NARANJO_ON +" TEXT NOT NULL, "+
-                SMS_NARANJO_OFF +" TEXT NOT NULL, "+
-                SMS_VERDE_ON + " TEXT NOT NULL, "+
-                SMS_VERDE_OFF + " TEXT NOT NULL, "+
-                STATUS_ROJO + " BOOLEAN NOT NULL, "+
+                SMS_ROJO_ON + " TEXT NULL, "+
+                SMS_ROJO_OFF + " TEXT NULL, "+
+                SMS_NARANJO_ON +" TEXT NULL, "+
+                SMS_NARANJO_OFF +" TEXT NULL, "+
+                SMS_VERDE_ON + " TEXT NULL, "+
+                SMS_VERDE_OFF + " TEXT NULL, "+
+                STATUS_ROJO + " BOOLEAN NULL, "+
                 STATUS_NARANJO + " BOOLEAN NOT NULL, "+
                 STATUS_VERDE + " BOOLEAN NOT NULL );"
 
@@ -168,7 +168,7 @@ class SQLiteHelper(var context: Context) :
         values.put(STATUS_VERDE, false)
 
         return db?.update(TABLE_NAME,values,"$ID=?", arrayOf(modeloContacto.mId.toString()))
-        db?.close()
+        //db?.close()
     }
 
     fun deletePerson(id: String): Int? {
