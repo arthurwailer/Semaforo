@@ -168,7 +168,7 @@ class SQLiteHelper(var context: Context) :
         values.put(STATUS_VERDE, false)
 
         return db?.update(TABLE_NAME,values,"$ID=?", arrayOf(modeloContacto.mId.toString()))
-        //db?.close()
+
     }
 
     fun deletePerson(id: String): Int? {

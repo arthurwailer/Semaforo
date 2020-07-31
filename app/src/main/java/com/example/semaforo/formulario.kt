@@ -1,6 +1,7 @@
 package com.example.semaforo
 
 import android.content.Intent
+import android.graphics.PointF.length
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -50,12 +51,25 @@ class formulario : AppCompatActivity() {
 
             if (extIdVal!! > 0) {
                 modeloContacto.mId = contacto!!.mId!!
-                sqLiteHelper.updatePerson(modeloContacto)
+                if (telefono.length == 8){
+                    sqLiteHelper.updatePerson(modeloContacto)
+                    Toast.makeText(applicationContext,"Actualizado",Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(applicationContext,"Ingresa un numero de 8 digitos",Toast.LENGTH_SHORT).show()// MENSAJE DE CONFIRMACION
+                }
             } else {
-                sqLiteHelper.insertData(modeloContacto) // TERMINAR DE INSERTAR DATA
+                if (telefono.length == 8) {
+                    sqLiteHelper.insertData(modeloContacto) // TERMINAR DE INSERTAR DATA
+                    Toast.makeText(applicationContext,"Contacto Guardado",Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(applicationContext,"Ingresa un numero de 8 digitos",Toast.LENGTH_SHORT).show()//
+
+                }
             }
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
 
         }
     }

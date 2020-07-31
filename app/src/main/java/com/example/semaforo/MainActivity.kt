@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClickSemaforo(vista: View, posicion: Int) {
                 Snackbar.make(vista, "Semaforo de " + contactos?.get(posicion)?.id, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
-                contactos?.get(posicion)?.id?.let { goToSemaforo(it) };
+                contactos?.get(posicion)?.id?.let { goToSemaforo(it) } // obtengo el id de estas posicion
             }
             override fun onClickEdit(vista: View, posicion: Int) {
                 Snackbar.make(vista, "Editar a " + contactos?.get(posicion)?.nombre, Snackbar.LENGTH_SHORT)
