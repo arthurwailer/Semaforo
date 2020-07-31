@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClickEdit(vista: View, posicion: Int) {
                 Snackbar.make(vista, "Editar a " + contactos?.get(posicion)?.nombre, Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
+                contactos?.get(posicion)?.id?.let { editContacto(it) }
             }
             override fun onClickDelete(vista: View, posicion: Int) {
                 Snackbar.make(vista, "Borrar a " + contactos?.get(posicion)?.id.toString(), Snackbar.LENGTH_SHORT)
@@ -61,10 +62,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun editContacto(idContacto: Int) {
+        val intent = Intent(this, formulario::class.java)
+        intent.putExtra("ID_CONTACTO",idContacto)
+        startActivity(intent)
+    }
+
     private fun goToSemaforo(idContacto: Int) {
         val intent = Intent(this, SemaforoActivity::class.java)
         intent.putExtra("ID_CONTACTO",idContacto)
         startActivity(intent)
     }
+
 
 }
