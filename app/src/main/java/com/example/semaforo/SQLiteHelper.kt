@@ -152,6 +152,34 @@ class SQLiteHelper(var context: Context) :
             db.close()
             return lstContacto
         }
+    fun updatePerson(modeloContacto:ModeloContacto): Int? {
+        val db:SQLiteDatabase?= this.writableDatabase
+        val values = ContentValues()
+        values.put(NAME, modeloContacto.mName)
+        values.put(PHONE, modeloContacto.mPhone)
+        values.put(SMS_ROJO_ON, modeloContacto.mSmsRojoOn)
+        values.put(SMS_ROJO_OFF, modeloContacto.mSmsRojoOff)
+        values.put(SMS_NARANJO_ON, modeloContacto.mSmsNaranjoOn)
+        values.put(SMS_NARANJO_OFF, modeloContacto.mSmsNaranjoOff)
+        values.put(SMS_VERDE_ON, modeloContacto.mSmsVerdeOn)
+        values.put(SMS_VERDE_OFF, modeloContacto.mSmsVerdeOff)
+        values.put(STATUS_ROJO,false)
+        values.put(STATUS_NARANJO, false)
+        values.put(STATUS_VERDE, false)
+
+        return db?.update(TABLE_NAME,values,"$ID=?", arrayOf(modeloContacto.mId.toString()))
+        db?.close()
+    }
+
+    fun deletePerson(id: String): Int? {
+        val db = this.writableDatabase
+
+        return db?.delete(TABLE_NAME,"_id = ?", arrayOf(id))
+        //db?.close()
+
+    }
+
+
 
     fun updateStatusColor(idPerson:Int, colorStatus:String, valStatus:Boolean) {
         val db: SQLiteDatabase? = this.writableDatabase
@@ -166,3 +194,4 @@ class SQLiteHelper(var context: Context) :
         db?.close()
     }
 }
+

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -38,18 +37,27 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
             }
             override fun onClickDelete(vista: View, posicion: Int) {
-                Snackbar.make(vista, "Borrar a " + contactos?.get(posicion)?.nombre, Snackbar.LENGTH_SHORT)
+                Snackbar.make(vista, "Borrar a " + contactos?.get(posicion)?.id.toString(), Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
+               db.deletePerson(contactos?.get(posicion)?.id!!.toString())
+
+
             }
         }) // entrego la lista al adaptador custom
         lista?.layoutManager = layoutManager
         lista?.adapter = adaptadorCustom
 
+
+
+
+
         botonAgregar.setOnClickListener {
             val intent = Intent(this, formulario::class.java)
             Log.i("hoasdjl","ajsdh")
             startActivity(intent)
+
         }
+
 
     }
 
@@ -58,4 +66,5 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("ID_CONTACTO",idContacto)
         startActivity(intent)
     }
+
 }
