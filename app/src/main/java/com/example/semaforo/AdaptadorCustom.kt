@@ -25,8 +25,6 @@ class AdaptadorCustom(items:ArrayList<ModeloDatoRecycler>, var clickListener: Cl
 
     }
 
-
-
     override fun getItemCount(): Int {
          return this.items?.count()!!
     }
@@ -34,9 +32,12 @@ class AdaptadorCustom(items:ArrayList<ModeloDatoRecycler>, var clickListener: Cl
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items?.get(position)
         holder.nombre?.text = item?.nombre
-
-
     }
+    fun removeItem(viewHolder: RecyclerView.ViewHolder){
+        items!!.removeAt(viewHolder.adapterPosition)
+        notifyItemRemoved(viewHolder.adapterPosition)
+    }
+
 
     class ViewHolder(vista: View, listener: ClickListener): RecyclerView.ViewHolder(vista), View.OnClickListener{
         var vista = vista
