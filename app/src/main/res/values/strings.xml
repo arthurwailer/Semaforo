@@ -1,7 +1,9 @@
 <resources>
     // activity home
     <string name="app_name">Semaforo</string>
-    <string name="botonAgregar">Add</string>
+    <string name="botonAgregar">Nuevo</string>
+    <string name="botonEditar">Editar</string>
+    <string name="botonBorrar">Borrar</string>
 
     // activity formulario
     <string name="botonAtras">Atras</string>

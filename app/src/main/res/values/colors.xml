@@ -13,5 +13,6 @@
 
     <color name="simpleBlack">#000000</color>
     <color name="simpleWhite">#FFFFFF</color>
+    <color name="simpleBlue">#2196F3</color>
 
 </resources>

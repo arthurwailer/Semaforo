@@ -19,7 +19,7 @@ class AdaptadorCustom(items:ArrayList<ModeloDatoRecycler>, var clickListener: Cl
 
     // infla el loyout
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdaptadorCustom.ViewHolder {
-        val vista = LayoutInflater.from(parent?.context).inflate(R.layout.contacto_recycler,parent,false)
+        val vista = LayoutInflater.from(parent.context).inflate(R.layout.contacto_recycler,parent,false)
         viewHolder = ViewHolder(vista, clickListener)
         return viewHolder!!
 
