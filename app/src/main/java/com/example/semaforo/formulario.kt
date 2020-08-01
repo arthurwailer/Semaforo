@@ -22,8 +22,8 @@ class formulario : AppCompatActivity() {
         Log.i("EXTERNAL VAL :-", extIdVal.toString())
 
         val actionbar = supportActionBar //boton atras a home
-        actionbar!!.title = "Formulario"
-        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar!!.title = "Datos del Equipo"
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
 
 
 
