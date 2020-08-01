@@ -27,6 +27,10 @@ class SemaforoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_semaforo)
 
+        val actionbar = supportActionBar
+        actionbar!!.title = "Semaforo"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         if (ActivityCompat.checkSelfPermission(this,"android.permission.SEND_SMS")
             != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf("android.permission.SEND_SMS"),
@@ -66,6 +70,11 @@ class SemaforoActivity : AppCompatActivity() {
             ViewCompat.setBackgroundTintList(lightGreen, ContextCompat.getColorStateList(
                 getApplicationContext(), color.lightOffGreen))
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+
+        onBackPressed()
+        return true
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {

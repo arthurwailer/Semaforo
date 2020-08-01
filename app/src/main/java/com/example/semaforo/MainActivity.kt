@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this)
         deleteIcon = ContextCompat.getDrawable(this,R.drawable.ic_delete_black_18dp)!!
 
+        val actionbar = supportActionBar
+        actionbar!!.title = "Contactos" // text de la parte d arriba de la actividad
 
 
         adaptadorCustom = AdaptadorCustom(db.allPerson as ArrayList<ModeloDatoRecycler>,object:ClickListener{

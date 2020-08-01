@@ -18,10 +18,15 @@ class formulario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_formulario)
-
         extIdVal = intent?.getIntExtra("ID_CONTACTO", -1) ?: -1
-
         Log.i("EXTERNAL VAL :-", extIdVal.toString())
+
+        val actionbar = supportActionBar //boton atras a home
+        actionbar!!.title = "Formulario"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+
+
         if (extIdVal!! > 0) { // si el id del contacto existe
             db = SQLiteHelper(this) // creo un obejto de tipo SQLiteHelper
             contacto = db.getSingleResult(extIdVal!!)
@@ -31,10 +36,7 @@ class formulario : AppCompatActivity() {
             Toast.makeText(applicationContext,"Nuevo Contacto",Toast.LENGTH_SHORT).show()
         }
 
-        botonAtrasHome.setOnClickListener{
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
-        }
+
         botonGuardar.setOnClickListener{
             val sqLiteHelper = SQLiteHelper(this)
 
@@ -72,6 +74,13 @@ class formulario : AppCompatActivity() {
             }
 
         }
+    }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+
+        onBackPressed()
+        return true
     }
 
     private fun setValues(contacto: ModeloContacto) {
