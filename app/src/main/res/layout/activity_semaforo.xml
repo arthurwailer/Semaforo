@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_semaforo"
     tools:context=".SemaforoActivity">
 
     <View
@@ -13,18 +14,20 @@
         android:background="@color/simpleBlack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.919"
         tools:ignore="ExtraText">
 
     </View>
 
     <Button
         android:id="@+id/lightRed"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:background="@drawable/ic_semaforo_light"
-        app:backgroundTint="@color/lightOffRed"
+        app:backgroundTint="#6A0000"
         app:layout_constraintBottom_toTopOf="@+id/lightOrange"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
@@ -32,8 +35,8 @@
 
     <Button
         android:id="@+id/lightOrange"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:background="@drawable/ic_semaforo_light"
         app:backgroundTint="@color/lightOffOrange"
         app:layout_constraintBottom_toBottomOf="@+id/view"
@@ -43,8 +46,8 @@
 
     <Button
         android:id="@+id/lightGreen"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:background="@drawable/ic_semaforo_light"
         app:backgroundTint="@color/lightOffGreen"
         app:layout_constraintBottom_toBottomOf="@+id/view"
@@ -57,9 +60,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nameContact"
-        android:textSize="25dp"
+        android:textColor="@color/simpleWhite"
+        android:textSize="32dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,7 +34,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/txtTelefono"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:digits="0123456789"
+            android:maxLength="8" />
 
         <EditText
             android:id="@+id/textSmsVerdeOn"

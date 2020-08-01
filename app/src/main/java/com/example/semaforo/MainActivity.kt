@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,109 +45,26 @@ class MainActivity : AppCompatActivity() {
 
         adaptadorCustom = AdaptadorCustom(db.allPerson as ArrayList<ModeloDatoRecycler>,object:ClickListener{
             override fun onClickSemaforo(vista: View, posicion: Int) {
-                Snackbar.make(vista, "Semaforo de " + contactos?.get(posicion)?.id, Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show()
                 contactos?.get(posicion)?.id?.let { goToSemaforo(it) } // obtengo el id de estas posicion
             }
             override fun onClickEdit(vista: View, posicion: Int) {
-                Snackbar.make(vista, "Editar a " + contactos?.get(posicion)?.nombre, Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show()
                 contactos?.get(posicion)?.id?.let { editContacto(it) }
             }
             override fun onClickDelete(vista: View, posicion: Int) {
-                Snackbar.make(vista, "Borrar a " + contactos?.get(posicion)?.id.toString(), Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show()
-               db.deletePerson(contactos?.get(posicion)?.id!!.toString())
+                Toast.makeText(applicationContext,"Contacto eliminado: "+ contactos?.get(posicion)?.id.toString(), Toast.LENGTH_SHORT).show()
+                db.deletePerson(contactos?.get(posicion)?.id!!.toString())
                 var intent = Intent(this@MainActivity,MainActivity::class.java)
                 startActivity(intent)
             }
-
 
         }) // entrego la lista al adaptador custom
         lista?.layoutManager = layoutManager
         lista?.adapter = adaptadorCustom
 
-
-        val itemTouchHelperCallbacks: ItemTouchHelper.SimpleCallback = object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT){
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
-            }
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, posicion: Int) {
-                //db.deletePerson(contactos?.get(posicion)?.id.toString())// no se borra de la base datos
-                (adaptadorCustom as AdaptadorCustom).removeItem(viewHolder)
-            }
-
-
-            override fun onChildDraw(
-                c: Canvas,
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                dX: Float,
-                dY: Float,
-                actionState: Int,
-                isCurrentlyActive: Boolean
-            ) {
-                val itemView = viewHolder.itemView
-                val iconMargin = (itemView.height - deleteIcon.intrinsicHeight)/2
-                if (dX > 0){
-                    //colorDrawable.setBounds(itemView.right,itemView.top,dX.toInt(),itemView.bottom)
-
-                    return  //colorDrawable.setBounds(itemView.left,itemView.top,dX.toInt(),itemView.bottom)
-
-                }else{
-                    colorDrawable.setBounds(itemView.right + dX.toInt(),itemView.top,itemView.right,itemView.bottom)
-                    //deleteIcon.setBounds(itemView.right+dX.toInt()+iconMargin,itemView.top+iconMargin,itemView.right-iconMargin,itemView.bottom-iconMargin)
-
-                }
-                colorDrawable.draw(c)
-                //deleteIcon.draw(c)
-
-                super.onChildDraw(
-                    c,
-                    recyclerView,
-                    viewHolder,
-                    dX,
-                    dY,
-                    actionState,
-                    isCurrentlyActive
-                )
-            }
-        }
-        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallbacks)
-        itemTouchHelper.attachToRecyclerView(layoutRecycler)
-
-
-
-
         botonAgregar.setOnClickListener {
             val intent = Intent(this, formulario::class.java)
-            Log.i("hoasdjl","ajsdh")
             startActivity(intent)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-    }
-
-    override fun onPause() {
-        super.onPause()
     }
 
     private fun editContacto(idContacto: Int) {

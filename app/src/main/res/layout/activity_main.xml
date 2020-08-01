@@ -11,24 +11,26 @@
 
     <Button
         android:id="@+id/botonAgregar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:layout_marginBottom="28dp"
         android:backgroundTint="@color/lightOnGreen"
         android:drawableLeft="@drawable/ic_baseline_add_24"
         android:text="@string/botonAgregar"
         android:textColor="@color/simpleWhite"
         android:textSize="24dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutRecycler"
+        app:layout_constraintVertical_bias="0.906" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/layoutRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="wrap"

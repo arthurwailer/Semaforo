@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.telephony.SmsManager
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -113,6 +114,8 @@ class SemaforoActivity : AppCompatActivity() {
                     sendSMS(it1,contacto?.mPhone!!)
                     ViewCompat.setBackgroundTintList(lightOrange, ContextCompat.getColorStateList(
                         getApplicationContext(), color.lightOnOrange))
+                } ?: kotlin.run{
+                    Toast.makeText(applicationContext,"No aplica mensaje", Toast.LENGTH_SHORT).show()
                 }
                 contacto!!.mStatusNaranjo = true
             }
@@ -144,11 +147,9 @@ class SemaforoActivity : AppCompatActivity() {
             val sms = SmsManager.getDefault()
             sms.sendTextMessage("+569"+phone,null,
                 msg,null,null)
-            Snackbar.make(view, "SMS ENVIADO: "+msg, Snackbar.LENGTH_SHORT)
-                .setAction("Action", null).show()
+            Toast.makeText(applicationContext,"SMS ENVIADO: "+msg, Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
-            Snackbar.make(view, "No Pudo Enviar SMS", Snackbar.LENGTH_SHORT)
-                .setAction("Action", null).show()
+            Toast.makeText(applicationContext,"No Pudo Enviar SMS", Toast.LENGTH_SHORT).show()
             e.printStackTrace()
         }
     }

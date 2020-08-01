@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_formulario.*
 import kotlinx.android.synthetic.main.activity_semaforo.*
 
