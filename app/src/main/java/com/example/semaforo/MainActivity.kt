@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, posicion: Int) {
                 //db.deletePerson(contactos?.get(posicion)?.id.toString())// no se borra de la base datos
-                //(adaptadorCustom as AdaptadorCustom).removeItem(viewHolder)
+                (adaptadorCustom as AdaptadorCustom).removeItem(viewHolder)
             }
 
 
@@ -91,16 +91,17 @@ class MainActivity : AppCompatActivity() {
                 val itemView = viewHolder.itemView
                 val iconMargin = (itemView.height - deleteIcon.intrinsicHeight)/2
                 if (dX > 0){
+                    //colorDrawable.setBounds(itemView.right,itemView.top,dX.toInt(),itemView.bottom)
 
                     return  //colorDrawable.setBounds(itemView.left,itemView.top,dX.toInt(),itemView.bottom)
 
                 }else{
                     colorDrawable.setBounds(itemView.right + dX.toInt(),itemView.top,itemView.right,itemView.bottom)
-                    deleteIcon.setBounds(itemView.right+dX.toInt()+iconMargin,itemView.top+iconMargin,itemView.right-iconMargin,itemView.bottom-iconMargin)
+                    //deleteIcon.setBounds(itemView.right+dX.toInt()+iconMargin,itemView.top+iconMargin,itemView.right-iconMargin,itemView.bottom-iconMargin)
 
                 }
                 colorDrawable.draw(c)
-                deleteIcon.draw(c)
+                //deleteIcon.draw(c)
 
                 super.onChildDraw(
                     c,
