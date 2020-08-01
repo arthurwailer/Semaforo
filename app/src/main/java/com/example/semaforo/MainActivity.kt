@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         deleteIcon = ContextCompat.getDrawable(this,R.drawable.ic_delete_black_18dp)!!
 
         val actionbar = supportActionBar
-        actionbar!!.title = "Contactos" // text de la parte d arriba de la actividad
+        actionbar!!.title = "Equipos" // text de la parte d arriba de la actividad
 
 
         adaptadorCustom = AdaptadorCustom(db.allPerson as ArrayList<ModeloDatoRecycler>,object:ClickListener{
@@ -126,13 +126,28 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, formulario::class.java)
             Log.i("hoasdjl","ajsdh")
             startActivity(intent)
-
         }
-
-
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
 
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
 
     private fun editContacto(idContacto: Int) {
         val intent = Intent(this, formulario::class.java)

@@ -5,7 +5,7 @@
 
     // activity formulario
     <string name="botonAtras">Atras</string>
-    <string name="txtDatosContacto">Datos del contacto</string>
+    <string name="txtDatosContacto">Datos del equipo</string>
     <string name="txtNombre">Nombre</string>
     <string name="txtTelefono">Teléfono</string>
     <string name="smsColorVerdeOn">Sms verde on</string>
