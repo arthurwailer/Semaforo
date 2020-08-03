@@ -10,13 +10,17 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="260dp"
-        android:layout_height="463dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.101">
 
         <EditText
             android:id="@+id/personName"
@@ -32,26 +36,26 @@
             android:id="@+id/personPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="0123456789"
             android:ems="10"
             android:hint="@string/txtTelefono"
             android:inputType="phone"
-            android:digits="0123456789"
             android:maxLength="8" />
 
         <EditText
-            android:id="@+id/textSmsVerdeOn"
+            android:id="@+id/textSmsRojoOn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/smsColorVerdeOn"
+            android:hint="@string/smsColorRojoOn"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/textSmsVerdeOff"
+            android:id="@+id/textSmsRojoOff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/smsColorVerdeOff"
+            android:hint="@string/smsColorRojoOff"
             android:inputType="textPersonName" />
 
         <EditText
@@ -71,21 +75,20 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/textSmsRojoOn"
+            android:id="@+id/textSmsVerdeOn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/smsColorRojoOn"
+            android:hint="@string/smsColorVerdeOn"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/textSmsRojoOff"
+            android:id="@+id/textSmsVerdeOff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/smsColorRojoOff"
+            android:hint="@string/smsColorVerdeOff"
             android:inputType="textPersonName" />
-
 
     </LinearLayout>
 
@@ -93,15 +96,17 @@
         android:id="@+id/botonGuardar"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
-        android:layout_marginBottom="64dp"
         android:backgroundTint="@color/simpleBlue"
         android:drawableLeft="@drawable/ic_baseline_save_24"
         android:text="@string/botonGuardar"
         android:textColor="@color/simpleWhite"
         android:textSize="24dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.195" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

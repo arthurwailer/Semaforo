@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     var layoutManager: RecyclerView.LayoutManager? = null
     var adaptadorCustom: AdaptadorCustom? = null
     var lista:RecyclerView? = null
-    var colorDrawable:ColorDrawable= ColorDrawable(Color.parseColor("#FF0000"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         contactos = ArrayList(db.allPerson) // este metodo retorna los nombres de la columna Nanme de la BBDD
         lista = findViewById(R.id.layoutRecycler)
         layoutManager = LinearLayoutManager(this)
-        deleteIcon = ContextCompat.getDrawable(this,R.drawable.ic_delete_black_18dp)!!
 
         val actionbar = supportActionBar
         actionbar!!.title = "Equipos" // text de la parte d arriba de la actividad
