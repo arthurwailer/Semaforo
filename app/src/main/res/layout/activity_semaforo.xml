@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:text="@string/nameContact"
         android:textColor="@color/simpleWhite"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,4 +72,28 @@
         android:layout_marginTop="24dp"
         android:layout_marginBottom="36dp"
         app:layout_constraintVertical_bias="0.208" />
+
+    <Button
+        android:id="@+id/toLeft"
+        android:layout_width="83dp"
+        android:layout_height="165dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:background="@drawable/ic_baseline_chevron_left"
+        app:backgroundTint="@color/simpleWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/toRight"
+        android:layout_width="83dp"
+        android:layout_height="165dp"
+        android:background="@drawable/ic_baseline_chevron_right"
+        app:backgroundTint="@color/simpleWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
