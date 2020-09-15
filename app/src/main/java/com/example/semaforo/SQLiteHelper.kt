@@ -152,6 +152,22 @@ class SQLiteHelper(var context: Context) :
             db.close()
             return lstContacto
         }
+    val allId:List<Int>
+        get() {
+            val lstContacto = ArrayList<Int>()
+            val selectQuery = "SELECT * FROM $TABLE_NAME"
+            val db: SQLiteDatabase? = this.writableDatabase
+            val cursor = db?.rawQuery(selectQuery,null)
+            if(cursor!!.moveToFirst()){
+                do{
+                    val contactoId:Int = cursor.getInt(cursor.getColumnIndex(ID))
+                    lstContacto.add(contactoId)
+                }while(cursor.moveToNext())
+            }
+            cursor.close()
+            db.close()
+            return lstContacto
+        }
     fun updatePerson(modeloContacto:ModeloContacto): Int? {
         val db:SQLiteDatabase?= this.writableDatabase
         val values = ContentValues()

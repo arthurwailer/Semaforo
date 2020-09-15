@@ -1,5 +1,6 @@
 package com.example.semaforo
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
@@ -18,7 +19,14 @@ import java.util.jar.Manifest
 
 class SemaforoActivity : AppCompatActivity() {
     internal lateinit var  db:SQLiteHelper
-    private var extIdVal:Int? = null
+    //private var extIdVal:Int? = null
+    private var posVal:Int? = null
+    private var arrayVal:ArrayList<Int>? = null
+
+
+    /**
+     * Recibir un Array con ID de contactos y posición con el Contacto actual
+     */
     var contacto:ModeloContacto? = null
     companion object {
         const val MY_PERMISSIONS_REQUEST_SEND_SMS = 1
@@ -38,40 +46,14 @@ class SemaforoActivity : AppCompatActivity() {
                 MY_PERMISSIONS_REQUEST_SEND_SMS)
         }
 
-        extIdVal = intent?.getIntExtra("ID_CONTACTO", -1)
+        posVal = intent?.getIntExtra("POS_ARRAY", -1)
+        arrayVal = intent?.getIntegerArrayListExtra("ARRAY")
 
-        Log.i("EXTERNAL VAL :-", extIdVal.toString())
-        extIdVal?.let {
-            db = SQLiteHelper(this) // creo un obejto de tipo SQLiteHelper
-            contacto = db.getSingleResult(extIdVal!!)
-            nameContact.text = contacto?.mName
-            contacto?.mName?.let { it1 -> Log.i("NAME CONTACTO", it1 )}
-        }
-        if (contacto?.mStatusRojo!!) {
-            // Cambio de color de fondo a cada luz del semaforo (API 16 compatible)
-            ViewCompat.setBackgroundTintList(lightRed, ContextCompat.getColorStateList(
-                getApplicationContext(), color.lightOnRed))
-        } else {
-            ViewCompat.setBackgroundTintList(lightRed, ContextCompat.getColorStateList(
-                getApplicationContext(), color.lightOffRed))
-        }
-        if (contacto?.mStatusNaranjo!!) {
-            // Cambio de color de fondo a cada luz del semaforo (API 16 compatible)
-            ViewCompat.setBackgroundTintList(lightOrange, ContextCompat.getColorStateList(
-                getApplicationContext(), color.lightOnOrange))
-        } else {
-            ViewCompat.setBackgroundTintList(lightOrange, ContextCompat.getColorStateList(
-                getApplicationContext(), color.lightOffOrange))
-        }
-        if (contacto?.mStatusVerde!!) {
-            // Cambio de color de fondo a cada luz del semaforo (API 16 compatible)
-            ViewCompat.setBackgroundTintList(lightGreen, ContextCompat.getColorStateList(
-                getApplicationContext(), color.lightOnGreen))
-        } else {
-            ViewCompat.setBackgroundTintList(lightGreen, ContextCompat.getColorStateList(
-                getApplicationContext(), color.lightOffGreen))
-        }
+        loadActivity()
     }
+
+
+
     override fun onSupportNavigateUp(): Boolean {
 
         onBackPressed()
@@ -139,6 +121,54 @@ class SemaforoActivity : AppCompatActivity() {
                 contacto!!.mStatusVerde = true
             }
             db.updateStatusColor(contacto!!.mId!!, "green", contacto!!.mStatusVerde!!)
+        }
+
+        toLeft.setOnClickListener {
+            posVal = posVal?.dec()
+            loadActivity()
+        }
+
+        toRight.setOnClickListener {
+            posVal = posVal?.inc()
+            loadActivity()
+        }
+
+    }
+
+    private fun loadActivity() {
+        //Log.i("EXTERNAL VAL :-", extIdVal.toString())
+        posVal?.let {
+            arrayVal?.get(it)?.let {
+                db = SQLiteHelper(this) // creo un obejto de tipo SQLiteHelper
+                contacto = db.getSingleResult(it)
+                nameContact.text = contacto?.mName
+                posicion.text = posVal?.let { it1 -> arrayVal?.get(it1).toString() }
+                contacto?.mName?.let { it1 -> Log.i("NAME CONTACTO", it1 )}
+            }
+        }
+        if (contacto?.mStatusRojo!!) {
+            // Cambio de color de fondo a cada luz del semaforo (API 16 compatible)
+            ViewCompat.setBackgroundTintList(lightRed, ContextCompat.getColorStateList(
+                getApplicationContext(), color.lightOnRed))
+        } else {
+            ViewCompat.setBackgroundTintList(lightRed, ContextCompat.getColorStateList(
+                getApplicationContext(), color.lightOffRed))
+        }
+        if (contacto?.mStatusNaranjo!!) {
+            // Cambio de color de fondo a cada luz del semaforo (API 16 compatible)
+            ViewCompat.setBackgroundTintList(lightOrange, ContextCompat.getColorStateList(
+                getApplicationContext(), color.lightOnOrange))
+        } else {
+            ViewCompat.setBackgroundTintList(lightOrange, ContextCompat.getColorStateList(
+                getApplicationContext(), color.lightOffOrange))
+        }
+        if (contacto?.mStatusVerde!!) {
+            // Cambio de color de fondo a cada luz del semaforo (API 16 compatible)
+            ViewCompat.setBackgroundTintList(lightGreen, ContextCompat.getColorStateList(
+                getApplicationContext(), color.lightOnGreen))
+        } else {
+            ViewCompat.setBackgroundTintList(lightGreen, ContextCompat.getColorStateList(
+                getApplicationContext(), color.lightOffGreen))
         }
     }
 

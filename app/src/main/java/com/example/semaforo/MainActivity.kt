@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     internal lateinit var  db:SQLiteHelper
     private lateinit var deleteIcon:Drawable
     var contactos: ArrayList<ModeloDatoRecycler>? = ArrayList<ModeloDatoRecycler>()
+    var contactosId : ArrayList<Int>? = ArrayList<Int>()
     var layoutManager: RecyclerView.LayoutManager? = null
     var adaptadorCustom: AdaptadorCustom? = null
     var lista:RecyclerView? = null
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         db = SQLiteHelper(this) // creo un obejto de tipo SQLiteHelper
         contactos = ArrayList(db.allPerson) // este metodo retorna los nombres de la columna Nanme de la BBDD
+        contactosId = ArrayList(db.allId)
         lista = findViewById(R.id.layoutRecycler)
         layoutManager = LinearLayoutManager(this)
 
@@ -43,7 +45,8 @@ class MainActivity : AppCompatActivity() {
 
         adaptadorCustom = AdaptadorCustom(db.allPerson as ArrayList<ModeloDatoRecycler>,object:ClickListener{
             override fun onClickSemaforo(vista: View, posicion: Int) {
-                contactos?.get(posicion)?.id?.let { goToSemaforo(it) } // obtengo el id de estas posicion
+            /**    contactos?.get(posicion)?.let { goToSemaforo(it,posicion, contactosId!!) } // obtengo el id de estas posicion **/
+                goToSemaforo(posicion, contactosId!!)// mando la posición actual junto con el Array de ID de contacto
             }
             override fun onClickEdit(vista: View, posicion: Int) {
                 contactos?.get(posicion)?.id?.let { editContacto(it) }
@@ -71,9 +74,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun goToSemaforo(idContacto: Int) {
+    private fun goToSemaforo(pos: Int, arrayList: ArrayList<Int> ) {
         val intent = Intent(this, SemaforoActivity::class.java)
-        intent.putExtra("ID_CONTACTO",idContacto)
+        intent.putExtra("ARRAY",arrayList)
+        intent.putExtra("POS_ARRAY",pos)
         startActivity(intent)
     }
 

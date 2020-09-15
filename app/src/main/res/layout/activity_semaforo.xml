@@ -9,8 +9,8 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="208dp"
-        android:layout_height="533dp"
+        android:layout_width="180dp"
+        android:layout_height="460dp"
         android:layout_marginTop="60dp"
         android:background="@color/simpleBlack"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,8 +25,8 @@
 
     <Button
         android:id="@+id/lightRed"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@drawable/ic_semaforo_light"
         app:backgroundTint="#6A0000"
         app:layout_constraintBottom_toTopOf="@+id/lightOrange"
@@ -36,8 +36,8 @@
 
     <Button
         android:id="@+id/lightOrange"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@drawable/ic_semaforo_light"
         app:backgroundTint="@color/lightOffOrange"
         app:layout_constraintBottom_toBottomOf="@+id/view"
@@ -47,8 +47,8 @@
 
     <Button
         android:id="@+id/lightGreen"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@drawable/ic_semaforo_light"
         app:backgroundTint="@color/lightOffGreen"
         app:layout_constraintBottom_toBottomOf="@+id/view"
@@ -72,6 +72,20 @@
         android:layout_marginTop="24dp"
         android:layout_marginBottom="36dp"
         app:layout_constraintVertical_bias="0.208" />
+
+    <TextView
+        android:id="@+id/posicion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nameContact"
+        android:textColor="@color/simpleWhite"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/toLeft"
